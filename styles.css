@@ -4,16 +4,16 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url('https://wallpapersafari.com/w/3hoteM'); /* Background image */
+    background-image: url("image\1.jpg"); /* New background image */
     background-size: cover; 
     background-attachment: fixed; 
     margin: 0;
-    color: #f8f1d2; 
+    color: #f8f1d2;
 }
 
 .container {
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+    background-color: rgba(0, 0, 0, 0.7); 
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
@@ -24,7 +24,7 @@ body {
 
 h1 {
     margin-bottom: 20px;
-    font-size: 2em; /* Larger and more prominent heading */
+    font-size: 2em; 
 }
 
 .dice-container {
