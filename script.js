@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const catCount = document.getElementById('catCount');
     const catAverage = document.getElementById('catAverage');
     const diceType = document.getElementById('diceType');
-    const numRolls = document.getElementById('numRolls');
     const catContainer = document.createElement('div');
     catContainer.classList.add('cat-container');
     document.body.appendChild(catContainer);
@@ -20,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const catImages = [];
 
     const rollHistory = [];
+    const numRollsValue = 20; // Fixed number of rolls
 
     const ctx = document.getElementById('diceChart').getContext('2d');
     const diceChart = new Chart(ctx, {
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         catAverage.textContent = (catImageCount / rollsCount).toFixed(2);
     }
 
-    function rollDiceSequentially(sides, numRollsValue) {
+    function rollDiceSequentially(sides) {
         rollsCount = 0;
         totalScore = 0;
         rollHistory.length = 0;
@@ -80,27 +80,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let rollIndex = 0;
         interval = setInterval(() => {
-            if (rollIndex < numRollsValue) {
-                const roll1 = Math.floor(Math.random() * sides) + 1;
-                const roll2 = Math.floor(Math.random() * sides) + 1;
-                const rollSum = roll1 + roll2;
-                rollsCount++;
-                totalScore += rollSum;
-
-                dice1.textContent = roll1;
-                dice2.textContent = roll2;
-                rolls.textContent = rollsCount;
-                score.textContent = totalScore;
-
-                updateChart(rollSum);
-                displayCatImages();
-
-                rollIndex++;
-            } else {
-                clearInterval(interval); // Clear the interval when reaching the target rolls
+            if (rollIndex >= numRollsValue) {
+                clearInterval(interval);
                 startButton.disabled = false;
                 stopButton.style.display = 'none';
+                return;
             }
+
+            const roll1 = Math.floor(Math.random() * sides) + 1;
+            const roll2 = Math.floor(Math.random() * sides) + 1;
+            const rollSum = roll1 + roll2;
+            rollsCount++;
+            totalScore += rollSum;
+
+            dice1.textContent = roll1;
+            dice2.textContent = roll2;
+            rolls.textContent = rollsCount;
+            score.textContent = totalScore;
+
+            updateChart(rollSum);
+            displayCatImages();
+
+            rollIndex++;
         }, 500); // Adjust time interval as needed
     }
 
@@ -121,8 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
         startButton.disabled = true;
         stopButton.style.display = 'block';
         const sides = parseInt(diceType.value);
-        const numRollsValue = parseInt(numRolls.value);
-        rollDiceSequentially(sides, numRollsValue);
+        rollDiceSequentially(sides);
     });
 
     stopButton.addEventListener('click', () => {
