@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const score = document.getElementById('score');
     const catCount = document.getElementById('catCount');
     const catAverage = document.getElementById('catAverage');
+    const diceType = document.getElementById('diceType');
+    const numRolls = document.getElementById('numRolls');
     const catContainer = document.createElement('div');
     catContainer.classList.add('cat-container');
     document.body.appendChild(catContainer);
@@ -52,22 +54,27 @@ document.addEventListener('DOMContentLoaded', () => {
         diceChart.update();
     }
 
-    startButton.addEventListener('click', () => {
-        startButton.disabled = true;
-        stopButton.style.display = 'block';
-        interval = setInterval(() => {
-            const roll1 = Math.floor(Math.random() * 6) + 1;
-            const roll2 = Math.floor(Math.random() * 6) + 1;
+    function rollDice() {
+        const sides = parseInt(diceType.value);
+        const numRollsValue = parseInt(numRolls.value);
+
+        rollsCount = 0;
+        totalScore = 0;
+        rollHistory.length = 0;
+
+        for (let i = 0; i < numRollsValue; i++) {
+            const roll1 = Math.floor(Math.random() * sides) + 1;
+            const roll2 = Math.floor(Math.random() * sides) + 1;
             const rollSum = roll1 + roll2;
             rollsCount++;
             totalScore += rollSum;
+
+            updateChart(rollSum);
 
             dice1.textContent = roll1;
             dice2.textContent = roll2;
             rolls.textContent = rollsCount;
             score.textContent = totalScore;
-
-            updateChart(rollSum);
 
             if (rollSum % 2 === 0) {
                 fetch('https://api.thecatapi.com/v1/images/search?limit=10') // Fetch 10 images
@@ -91,7 +98,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 catContainer.innerHTML = ''; // Clear cats if the roll isn't even
                 catAverage.textContent = (catImageCount / rollsCount).toFixed(2);
             }
-        }, 1000); // Adjust time
+        }
+
+        startButton.disabled = false;
+        stopButton.style.display = 'none';
+    }
+
+    startButton.addEventListener('click', () => {
+        startButton.disabled = true;
+        stopButton.style.display = 'block';
+        rollDice();
     });
 
     stopButton.addEventListener('click', () => {
