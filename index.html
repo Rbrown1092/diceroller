@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Roller</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Dice Roller</h1>
+        <h3><a href="">Contact Me</a></h3>
+        <button id="startButton">Start Rolling</button>
+        <button id="stopButton" style="display: none;">Stop Rolling</button>
+        <div class="dice-container">
+            <div class="dice" id="dice1">🎲</div>
+            <div class="dice" id="dice2">🎲</div>
+        </div>
+        <div class="scoreboard">
+            <p>Rolls: <span id="rolls">0</span></p>
+            <p>Total Score: <span id="score">0</span></p>
+            <p>Cat Pictures Displayed: <span id="catCount">0</span></p>
+            <p>Average Cat Pictures per Roll: <span id="catAverage">0</span></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
