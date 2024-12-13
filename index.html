@@ -10,7 +10,26 @@
 <body>
     <div class="container">
         <h1>Dice Roller</h1>
-      
+        <h3><a href="">Contact Me</a></h3>
+        <label for="diceType">Choose Dice Type:</label>
+        <select id="diceType">
+            <option value="2">d2</option>
+            <option value="4">d4</option>
+            <option value="6" selected>d6</option>
+            <option value="8">d8</option>
+            <option value="10">d10</option>
+            <option value="12">d12</option>
+            <option value="20">d20</option>
+        </select>
+        <label for="numRolls">Number of Rolls:</label>
+        <select id="numRolls">
+            <option value="1">1</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20" selected>20</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+        </select>
         <button id="startButton">Start Rolling</button>
         <button id="stopButton" style="display: none;">Stop Rolling</button>
         <div class="dice-container">
