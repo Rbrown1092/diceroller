@@ -1,14 +1,14 @@
 body {
-    font-family: 'Cinzel', serif; /* Use a more medieval-looking font */
+    font-family: 'Cinzel', serif; 
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url('https://images.unsplash.com/photo-1600372786265-10d5d7dfb2c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'); /* Background image */
-    background-size: cover; /* Ensure the background covers the entire area */
-    background-attachment: fixed; /* Keep the background fixed when scrolling */
+    background-image: url('https://wallpapersafari.com/w/3hoteM'); /* Background image */
+    background-size: cover; 
+    background-attachment: fixed; 
     margin: 0;
-    color: #f8f1d2; /* Light parchment color for text */
+    color: #f8f1d2; 
 }
 
 .container {
