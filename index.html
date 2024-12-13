@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dice Roller</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="container">
         <h1>Dice Roller</h1>
-        
         <label for="diceType">Choose Dice Type:</label>
         <select id="diceType">
             <option value="2">d2</option>
@@ -39,8 +39,7 @@
         <div class="scoreboard">
             <p>Rolls: <span id="rolls">0</span></p>
             <p>Total Score: <span id="score">0</span></p>
-                       
-        </div>
+                    </div>
         <canvas id="diceChart" width="400" height="200"></canvas>
     </div>
     <script src="script.js"></script>
