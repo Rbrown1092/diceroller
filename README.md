@@ -1,5 +1,5 @@
 # diceroller
-a multiple dice rolling simulator for multiple needs
+a dice rolling simulator for multiple needs
 
 The Dice roller will roll, store, and display dice rolls from a d2 - d20 dice
 
