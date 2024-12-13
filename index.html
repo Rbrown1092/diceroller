@@ -21,15 +21,6 @@
             <option value="12">d12</option>
             <option value="20">d20</option>
         </select>
-        <label for="numRolls">Number of Rolls:</label>
-        <select id="numRolls">
-            <option value="1">1</option>
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="20" selected>20</option>
-            <option value="50">50</option>
-            <option value="100">100</option>
-        </select>
         <button id="startButton">Start Rolling</button>
         <button id="stopButton" style="display: none;">Stop Rolling</button>
         <div class="dice-container">
@@ -39,7 +30,7 @@
         <div class="scoreboard">
             <p>Rolls: <span id="rolls">0</span></p>
             <p>Total Score: <span id="score">0</span></p>
-                    </div>
+        </div>
         <canvas id="diceChart" width="400" height="200"></canvas>
     </div>
     <script src="script.js"></script>
