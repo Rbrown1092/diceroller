@@ -57,14 +57,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function displayCatImages() {
         catContainer.innerHTML = ''; // Clear previous cats
-        const randomIndex = Math.floor(Math.random() * catImages.length);
-        const catImage = document.createElement('img');
-        catImage.src = catImages[randomIndex];
-        catImage.classList.add('cat-image');
-        catImage.style.top = `${Math.random() * 80 + 10}%`; // Randomly position between 10% and 90% of the height
-        catImage.style.left = `${Math.random() * 80 + 10}%`; // Randomly position between 10% and 90% of the width
-        catContainer.appendChild(catImage);
-        catImageCount++;
+        const numCats = Math.floor(Math.random() * 5) + 1; // Random number of cats (1-5)
+        for (let i = 0; i < numCats; i++) {
+            const randomIndex = Math.floor(Math.random() * catImages.length);
+            const catImage = document.createElement('img');
+            catImage.src = catImages[randomIndex];
+            catImage.classList.add('cat-image');
+            catImage.style.top = `${Math.random() * 80 + 10}%`; // Randomly position between 10% and 90% of the height
+            catImage.style.left = `${Math.random() * 80 + 10}%`; // Randomly position between 10% and 90% of the width
+            catContainer.appendChild(catImage);
+            catImageCount++;
+        }
         catCount.textContent = catImageCount;
         catAverage.textContent = (catImageCount / rollsCount).toFixed(2);
     }
