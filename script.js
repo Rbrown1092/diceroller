@@ -16,22 +16,61 @@ document.addEventListener('DOMContentLoaded', () => {
     let catImageCount = 0;
     let interval;
 
+    const rollHistory = [];
+
+    const ctx = document.getElementById('diceChart').getContext('2d');
+    const diceChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: Array.from({ length: 100 }, (_, i) => i + 1),
+            datasets: [{
+                label: 'Dice Roll Sum',
+                data: [],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+                fill: false
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    beginAtZero: true
+                },
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    function updateChart(newSum) {
+        if (rollHistory.length >= 100) {
+            rollHistory.shift();
+        }
+        rollHistory.push(newSum);
+        diceChart.data.datasets[0].data = rollHistory;
+        diceChart.update();
+    }
+
     startButton.addEventListener('click', () => {
         startButton.disabled = true;
         stopButton.style.display = 'block';
         interval = setInterval(() => {
             const roll1 = Math.floor(Math.random() * 6) + 1;
             const roll2 = Math.floor(Math.random() * 6) + 1;
+            const rollSum = roll1 + roll2;
             rollsCount++;
-            totalScore += roll1 + roll2;
+            totalScore += rollSum;
 
             dice1.textContent = roll1;
             dice2.textContent = roll2;
             rolls.textContent = rollsCount;
             score.textContent = totalScore;
 
-            if ((roll1 + roll2) % 2 === 0) {
-                fetch('https://api.thecatapi.com/v1/images/search?limit=10') // Fetch 10 images at once
+            updateChart(rollSum);
+
+            if (rollSum % 2 === 0) {
+                fetch('https://api.thecatapi.com/v1/images/search?limit=10') // Fetch 10 images
                     .then(response => response.json())
                     .then(data => {
                         catContainer.innerHTML = ''; // Clear previous cats
@@ -52,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 catContainer.innerHTML = ''; // Clear cats if the roll isn't even
                 catAverage.textContent = (catImageCount / rollsCount).toFixed(2);
             }
-        }, 1000); // Adjust the interval time as needed
+        }, 1000); // Adjust time
     });
 
     stopButton.addEventListener('click', () => {
