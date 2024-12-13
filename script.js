@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 rollIndex++;
             } else {
-                clearInterval(interval);
+                clearInterval(interval); // Clear the interval when reaching the target rolls
                 startButton.disabled = false;
                 stopButton.style.display = 'none';
             }
